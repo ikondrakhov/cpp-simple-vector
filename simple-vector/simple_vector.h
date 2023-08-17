@@ -186,9 +186,7 @@ public:
         }
         if(new_size > size_) {
             for(auto it = end(); it != ptr_.Get() + new_size; it++) {
-                Type* tmp = new Type();
-                *(it) = std::move(*tmp);
-                delete tmp;
+                *(it) = Type{};
             }
         }
         size_ = new_size;
