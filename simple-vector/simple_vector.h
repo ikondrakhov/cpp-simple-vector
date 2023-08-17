@@ -116,6 +116,7 @@ public:
     }
 
     Iterator Insert(ConstIterator pos, const Type& v) {
+        assert(pos >= begin() && pos <= end());
         size_t pos_i = pos - begin();
         if(size_ == capacity_) {
             Reserve((capacity_ == 0) ? 1 : (capacity_ * 2));
@@ -127,6 +128,7 @@ public:
     }
     
     Iterator Insert(ConstIterator pos, Type&& v) {
+        assert(pos >= begin() && pos <= end());
         size_t pos_i = pos - begin();
         if(size_ == capacity_) {
             Reserve((capacity_ == 0) ? 1 : (capacity_ * 2));
@@ -138,6 +140,7 @@ public:
     }
     
     Iterator Erase(ConstIterator pos) {
+        assert(pos >= begin() && pos <= end());
         std::move(const_cast<Iterator>(pos + 1), end(), const_cast<Iterator>(pos));
         size_--;
         return const_cast<Iterator>(pos);
@@ -150,10 +153,12 @@ public:
     }
 
     Type& operator[](size_t index) noexcept {
+        assert(index < size_);
         return ptr_[index];
     }
 
     const Type& operator[](size_t index) const noexcept {
+        assert(index < size_);
         return ptr_[index];
     }
 
