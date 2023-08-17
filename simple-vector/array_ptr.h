@@ -32,7 +32,6 @@ public:
     ArrayPtr& operator=(ArrayPtr&& other) {
         if(this != &other) {
             std::swap(raw_ptr_, other.raw_ptr_);
-            other.raw_ptr_ = nullptr;
         }
         return *this;
     }
